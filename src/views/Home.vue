@@ -10,32 +10,24 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-         <b-nav-item  :to="{name:'agregar'}"> Agregar</b-nav-item>
-        <b-nav-item href="#" disabled>Disabled</b-nav-item>
+         <b-nav-item class="ml-3" :to="{name:'lista'}"><b-icon icon="house-door-fill" font-scale="2"></b-icon></b-nav-item>
+         <b-nav-item class="ml-5" :to="{name:'agregar'}"> Agregar</b-nav-item>
+         <b-nav-item class="ml-5" :to="{name:'eliminar'}"> Eliminar</b-nav-item>
+         <b-nav-item class="ml-5" :to="{name:'editar'}"> Editar</b-nav-item>
+        
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-form>
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-        </b-nav-form>
-
-        <b-nav-item-dropdown text="Lang" right>
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ES</b-dropdown-item>
-          <b-dropdown-item href="#">RU</b-dropdown-item>
-          <b-dropdown-item href="#">FA</b-dropdown-item>
-        </b-nav-item-dropdown>
-
-        <b-nav-item-dropdown right>
+      <b-nav-item right>
           <!-- Using 'button-content' slot -->
-          <template v-slot:button-content>
-            <em>Usuario</em>
+          <template>
+             <b-button class="mb-2" variant="danger" @click="logout"><b-icon icon="power" aria-hidden="true">
+               </b-icon> Cerrar sesion </b-button>
           </template>
           
-          <b-dropdown-item  @click="logout">Cerrar sesion</b-dropdown-item>
-        </b-nav-item-dropdown>
+         
+        </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>

@@ -1,34 +1,24 @@
 <template>
-    <div class="lista">
+    <div class="container mt-4" id="lista">
 
-        <table class="table">
+    <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Codigo</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Precio</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+    <tr v-for="(juguete,i) in juguetes"  :key="i">
+      <th>{{juguete.data.codigo}}</th>
+      <td>{{juguete.data.nombre}}</td>
+      <td>{{juguete.data.stock}}</td>
+      <td>{{juguete.data.precio}}</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    
+      
   </tbody>
 </table>
         
@@ -52,3 +42,6 @@ export default {
 },
 }
 </script>
+<style scoped>
+
+</style>

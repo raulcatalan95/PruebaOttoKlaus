@@ -6,12 +6,14 @@
     
    <div class="formulario bg-primary p-5">
      <h5>Correo Electronico</h5>
-    <b-form-input
-    type="text"
-    v-model="correo"
-    placeholder="Loquesea@correo.com">
-    
-    </b-form-input>
+      <b-input-group size="lg">
+      <b-input-group-prepend is-text>
+        <b-icon icon="envelope"></b-icon>
+      </b-input-group-prepend>
+      <b-form-input type="email" placeholder="me@example.com"  v-model="correo"></b-form-input>
+    </b-input-group>
+   
+   
     <h5>Contraseña</h5>
     <b-form-input
     type="text"

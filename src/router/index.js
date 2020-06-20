@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Agregar from '../views/Agregar.vue'
 import Lista from '../views/Lista.vue'
+import Eliminar from '../views/Eliminar.vue'
+import Editar from '../views/Editar.vue'
 import Firebase from 'firebase'
 /* 
   /
@@ -34,7 +36,17 @@ Vue.use(VueRouter)
         path: 'lista',
         name: 'lista',
         component: Lista,
-      }
+      },
+      {
+        path: 'editar',
+        name: 'editar',
+        component: Editar,
+      },
+      {
+        path: 'eliminar',
+        name: 'eliminar',
+        component: Eliminar,
+      },
     ]
   },
   {
