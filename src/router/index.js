@@ -20,6 +20,7 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home,
+    redirect: {name: 'lista'},
     meta:{
       login: true
     },
