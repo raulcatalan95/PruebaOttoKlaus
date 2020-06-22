@@ -1,7 +1,10 @@
 <template>
     <div class="container mt-4" id="lista">
-
-    <table class="table">
+      <h2>Lista de Productos</h2>
+<div v-show="cargando" class="m-5">
+  <b-spinner label="Loading..."></b-spinner>
+</div>
+    <table v-show="tablaLista" class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Codigo</th>
@@ -15,7 +18,7 @@
       <th>{{juguete.data.codigo}}</th>
       <td>{{juguete.data.nombre}}</td>
       <td>{{juguete.data.stock}}</td>
-      <td>{{juguete.data.precio}}</td>
+      <td>${{juguete.data.precio}}</td>
     </tr>
     
       
@@ -29,14 +32,20 @@ import axios from 'axios'
 export default {
         data() {
         return {
-         juguetes:''
+         juguetes:'',
+         cargando:false,
+         tablaLista:true
         }
     },
  mounted(){
+   this.cargando=true
+   this.tablaLista=false
       axios.get("https://us-central1-vue-crud-rest01.cloudfunctions.net/patients/patients")
   .then(data => {
      this.juguetes=data.data
     console.log(this.juguetes)
+    this.cargando=false
+    this.tablaLista=true
    
  })
 },
