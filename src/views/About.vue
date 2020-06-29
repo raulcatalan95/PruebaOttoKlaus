@@ -19,9 +19,9 @@
       <td>{{juguete.data.stock}}</td>
       <td>{{juguete.data.precio}}</td>
       
-      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" @click="primerEditar(juguete.id)">editar</button>
+      <td><button><el-button type="text" @click="open(juguete.id)">Eliminar</el-button></button>
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!--div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -54,13 +54,15 @@
       </div>
     </div>
   </div>
-</div>
+</div-->
 
 </td>
     </tr>
    
   </tbody>
 </table>
+
+
     
   </div>
 </template>
@@ -77,7 +79,40 @@ export default {
     }
   },
   methods: {
-    primerEditar(id){
+
+ open(id) {
+     this.id=id
+   
+   console.log(this.id)
+        this.$confirm('This will permanently delete the file. Continue?', 'Warning', {
+          confirmButtonText: 'OK',
+          cancelButtonText: 'Cancel',
+          type: 'warning'
+        }).then(() => {
+         this.eliminar()
+          this.$message({
+            type: 'success',
+            message: 'Delete completed'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: 'Delete canceled'
+          });          
+        });
+      },
+
+      eliminar(){
+ axios.delete("https://us-central1-vue-crud-rest01.cloudfunctions.net/patients/patient/"+this.id)
+    .then(data => {
+      console.log(data.data)
+  e
+       
+   
+ })
+}
+
+   /* primerEditar(id){
        this.id = id
        console.log(this.id)
     },
@@ -96,7 +131,7 @@ export default {
    
  })
            
-       }
+       }*/
   },
    mounted() {
      axios.get("https://us-central1-vue-crud-rest01.cloudfunctions.net/patients/patients")

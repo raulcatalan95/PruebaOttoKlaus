@@ -36,8 +36,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-//import HelloWorld from '@/components/HelloWorld.vue'
 import Firebase from 'firebase'
 
 export default {
@@ -47,10 +45,10 @@ export default {
    
   },
   methods: {
-       logout(){
-  Firebase.auth().signOut().then(accept => {
-  this.$router.push('/login');
-  console.log(accept)
+  logout(){
+   Firebase.auth().signOut().then(accept => {
+   this.$router.push('/login');
+   console.log(accept)
   });
  },
   },

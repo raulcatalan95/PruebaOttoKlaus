@@ -19,31 +19,8 @@
           <input class="form-control col-10" type="text" placeholder="precio" v-model="precio">
           </div>
           <div> 
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Agregar</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{mensajeModal}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" v-show="modalBody">
-      <h5>¿Estas seguro de Agregar este Producto?</h5>
-      </div>
-      <div class="modal-footer" v-show="modalFooter">
-          <button type="button" class="btn btn-primary"   @click="Agregar">Aceptar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-        
-          </div>
+          <button type="button" class="btn btn-success" @click="open">Agregar</button>
+         </div>
          
         </div>
          
@@ -52,48 +29,60 @@
 <script>
 import axios from 'axios'
 export default {
+    name:'agregar',
     data() {
         return {
+            
            codigo:'',
            nombre:'',
            stock:'',
            precio:'',
-           modalFooter:true,
-           modalBody:true
+           
         }
     },
 methods: {
+open() {
+   
+      this.$confirm('¿Esta seguro Agregar el producto?', 'Agregar', {
+          confirmButtonText: 'Aceptar',
+          cancelButtonText: 'Cancelar',
+          type: 'warning'
+        }).then(() => {
+         this.Agregar()
+          this.$message({
+            type: 'success',
+            message: 'Producto Agregado exitosamente'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: 'Agregar cancelado'
+          });          
+        });
+      },
+
     Agregar(){
-        let producto = {
-            codigo:this.codigo,
-            nombre:this.nombre,
-            stock:this.stock,
-            precio:this.precio
-        };
+       let producto={
+           codigo:this.codigo,
+           nombre:this.nombre,
+           stock:this.stock,
+           precio:this.precio,
+       }
       axios.post("https://us-central1-vue-crud-rest01.cloudfunctions.net/patients/patient",producto)
   .then(respuesta => {
      console.log(respuesta.message)
-     this.modalFooter=false
-     this.modalBody=false
+    
 
       this.codigo=''
       this.nombre=''
       this.stock=''
       this.precio=''
 
-
+    this.$router.push({name:'Home'})
      })
 },
 },
-computed: {
-    mensajeModal(){
-if (this.modalBody==false) {
-    return 'Producto agregado con exito'
-}else{
-    return ''
-}
-    }
-},
+
 }
 
 

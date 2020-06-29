@@ -2,24 +2,25 @@
   <div class="login">
     
     <br>
-     <h2 class="bg-primary">Inicia Sesion</h2>
+     <h2 class="bg-primary">Login</h2>
     
    <div class="formulario bg-primary p-5">
      <h5>Correo Electronico</h5>
-      <b-input-group size="lg">
+      <b-input-group >
       <b-input-group-prepend is-text>
         <b-icon icon="envelope"></b-icon>
       </b-input-group-prepend>
-      <b-form-input type="email" placeholder="me@example.com"  v-model="correo"></b-form-input>
+      <b-form-input type="email" placeholder="correo@example.com"  v-model="correo"></b-form-input>
     </b-input-group>
    
    
     <h5>Contraseña</h5>
-    <b-form-input
-    type="text"
-     v-model="contraseña"
-     placeholder="contraseña">
-    </b-form-input>
+     <b-input-group >
+      <b-input-group-prepend is-text>
+        <b-icon icon="lock-fill"></b-icon>
+      </b-input-group-prepend>
+      <b-form-input type="email" placeholder="contraseña"  v-model="contraseña"></b-form-input>
+    </b-input-group>
     <button @click="login" class="btn btn-success m-3">Ingresar</button>
 </div>
   </div>
@@ -28,10 +29,12 @@
 <script>
 import Firebase from 'firebase'
 export default {
+  name:'login',
+  
   data() {
     return {
-      correo:'',
-      contraseña:'',
+      correo:'correo@correo.com',
+      contraseña:'123456',
     }
   },
 methods: {

@@ -10,6 +10,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
+//element
+import 'element-ui/lib/theme-chalk/index.css'
+import ElementUI from 'element-ui'
+
+Vue.use(ElementUI)
+
 // Firebase
 import Firebase from 'firebase'
 
